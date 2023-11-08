@@ -3,10 +3,11 @@
 """Accept a ROS navmsgs/Path and publish traj_point to tracking_pid interpolated along the given Path"""
 
 from dynamic_reconfigure.server import Server
-from geometry_msgs.msg import PoseStamped
+from geometry_msgs.msg import PoseStamped,Twist
 from nav_msgs.msg import Path
 from std_msgs.msg import Bool
 from std_srvs.srv import SetBool
+from std_msgs.msg import String
 from tracking_pid.cfg import TargetVelocityConfig
 from tracking_pid.msg import traj_point, FollowPathAction, FollowPathGoal, FollowPathResult, FollowPathFeedback
 from visualization_msgs.msg import Marker
@@ -296,6 +297,7 @@ class InterpolatorNode(object):
 
         self._visualization_pub = rospy.Publisher("interpolator_viz", Marker, queue_size=1)
         self._pub_finished = rospy.Publisher("trajectory_finished", Bool, queue_size=1)
+        self.servo_pub=rospy.Publisher("/drop",String,latch=True,queue_size=1)
 
         self.robot_frame = 'base_link'
 
@@ -322,6 +324,11 @@ class InterpolatorNode(object):
         self._latest_path_msg = None
         self._path_sub = rospy.Subscriber("path", Path, self._accept_path_from_topic, queue_size=1)
         self._path_pub = rospy.Publisher("path/viz", Path, queue_size=1, latch=True)
+
+        self.botname=rospy.get_param("~dotname")
+        print(self.botname)
+        self.botpub=rospy.Publisher(self.botname,Twist,queue_size=1,latch=True)
+        
         self._as = actionlib.SimpleActionServer("follow_path", FollowPathAction, auto_start=False)
         self._as.register_goal_callback(self._accept_goal)
         self._as.start()
@@ -522,6 +529,14 @@ class InterpolatorNode(object):
             progress_on_section = (duration_on_section / self._current_section.duration_for_section)
         else:
             rospy.loginfo("Instantaneous completion of 0-length section")
+            # msg=Twist([0,0,0],[0,0,0])
+            # print(self.botname)
+            # msgservo=String(self.botname[3])
+            # # for i in range(5):
+            # self.botpub.publish(msg)
+            # self.servo_pub.publish(msgservo)
+            rospy.sleep(2)
+            # print("Harsh wastes tape")
             progress_on_section = 1
 
         tp = self._current_section.interpolate_with_acceleration(rospy.Time.now())

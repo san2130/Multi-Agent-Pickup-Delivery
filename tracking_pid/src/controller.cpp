@@ -292,7 +292,7 @@ geometry_msgs::Twist Controller::update(const geometry_msgs::Transform current, 
   geometry_msgs::Twist output_combined;
   // Generate twist message
   if (holonomic_robot_enable)
-  { ROS_INFO("Hi");
+  { 
     output_combined.linear.x = scale_long_control * control_effort_long;
     output_combined.linear.y = control_effort_lat;
     output_combined.linear.z = 0;
@@ -336,7 +336,7 @@ void Controller::selectMode(ControllerMode mode)
   {
   case ControllerMode::frontAxleLateral:
     // Front axle lateral controller (default)
-    l = 0.5;
+    l = 0.0;
     feedback_long_enabled = true;
     feedback_lat_enabled = true;
     feedback_ang_enabled = false;

@@ -14,8 +14,8 @@ poses:
       frame_id: 'map'
     pose:
       position:
-        x: 0.0
-        y: 0.0
+        x: 0.25
+        y: 0.6
         z: 0.0
       orientation:
         x: 0.0
@@ -31,8 +31,8 @@ poses:
       frame_id: 'map'
     pose:
       position:
-        x: 5.0
-        y: 0.0
+        x: 0.25
+        y: 0.5
         z: 0.0
       orientation:
         x: 0.0
@@ -48,8 +48,8 @@ poses:
       frame_id: 'map'
     pose:
       position:
-        x: 5.0
-        y: 0.0
+        x: 0.25
+        y: 0.4
         z: 0.0
       orientation:
         x: 0.0
@@ -65,8 +65,8 @@ poses:
       frame_id: 'map'
     pose:
       position:
-        x: 0.0
-        y: 0.0
+        x: 0.25
+        y: 0.3
         z: 0.0
       orientation:
         x: 0.0
@@ -82,8 +82,8 @@ poses:
       frame_id: 'map'
     pose:
       position:
-        x: 0.0
-        y: 0.0
+        x: 0.25
+        y: 0.4
         z: 0.0
       orientation:
         x: 0.0
@@ -99,8 +99,8 @@ poses:
       frame_id: 'map'
     pose:
       position:
-        x: 5.0
-        y: 0.0
+        x: 0.25
+        y: 0.5
         z: 0.0
       orientation:
         x: 0.0
@@ -116,113 +116,79 @@ poses:
       frame_id: 'map'
     pose:
       position:
-        x: 5.0
-        y: 0.0
+        x: 0.25
+        y: 0.6
         z: 0.0
       orientation:
         x: 0.0
         y: 0.0
         z: 0.0
         w: 1.0
-  -
-    header:
-      seq: 7
-      stamp:
-        secs: 0
-        nsecs:         0
-      frame_id: 'map'
-    pose:
-      position:
-        x: 0.0
-        y: 0.0
-        z: 0.0
-      orientation:
-        x: 0.0
-        y: 0.0
-        z: 0.0
-        w: 1.0
-  -
-    header:
-      seq: 8
-      stamp:
-        secs: 0
-        nsecs:         0
-      frame_id: 'map'
-    pose:
-      position:
-        x: 0.0
-        y: 0.0
-        z: 0.0
-      orientation:
-        x: 0.0
-        y: 0.0
-        z: 0.0
-        w: 1.0
-  -
-    header:
-      seq: 8
-      stamp:
-        secs: 0
-        nsecs:         0
-      frame_id: 'map'
-    pose:
-      position:
-        x: 5.0
-        y: 0.0
-        z: 0.0
-      orientation:
-        x: 0.0
-        y: 0.0
-        z: 0.0
-        w: 1.0
-  -
-    header:
-      seq: 10
-      stamp:
-        secs: 0
-        nsecs:         0
-      frame_id: 'map'
-    pose:
-      position:
-        x: 5.0
-        y: 0.0
-        z: 0.0
-      orientation:
-        x: 0.0
-        y: 0.0
-        z: 0.0
-        w: 1.0
-  -
-    header:
-      seq: 11
-      stamp:
-        secs: 0
-        nsecs:         0
-      frame_id: 'map'
-    pose:
-      position:
-        x: 0.0
-        y: 0.0
-        z: 0.0
-      orientation:
-        x: 0.0
-        y: 0.0
-        z: 0.0
-        w: 1.0
-  -
-    header:
-      seq: 12
-      stamp:
-        secs: 0
-        nsecs:         0
-      frame_id: 'map'
-    pose:
-      position:
-        x: 0.0
-        y: 0.0
-        z: 0.0
-      orientation:
-        x: 0.0
-        y: 0.0
-        z: 0.0
-        w: 1.0
+  # -
+  #   header:
+  #     seq: 7
+  #     stamp:
+  #       secs: 0
+  #       nsecs:         0
+  #     frame_id: 'map'
+  #   pose:
+  #     position:
+  #       x: 0.25
+  #       y: 0.3
+  #       z: 0.0
+  #     orientation:
+  #       x: 0.0
+  #       y: 0.0
+  #       z: 0.0
+  #       w: 1.0
+  # -
+  #   header:
+  #     seq: 8
+  #     stamp:
+  #       secs: 0
+  #       nsecs:         0
+  #     frame_id: 'map'
+  #   pose:
+  #     position:
+  #       x: 0.25
+  #       y: 0.4
+  #       z: 0.0
+  #     orientation:
+  #       x: 0.0
+  #       y: 0.0
+  #       z: 0.0
+  #       w: 1.0
+  # -
+  #   header:
+  #     seq: 9
+  #     stamp:
+  #       secs: 0
+  #       nsecs:         0
+  #     frame_id: 'map'
+  #   pose:
+  #     position:
+  #       x: 0.15
+  #       y: 0.4
+  #       z: 0.0
+  #     orientation:
+  #       x: 0.0
+  #       y: 0.0
+  #       z: 0.0
+  #       w: 1.0
+  # -
+  #   header:
+  #     seq: 10
+  #     stamp:
+  #       secs: 0
+  #       nsecs:         0
+  #     frame_id: 'map'
+  #   pose:
+  #     position:
+  #       x: 0.15
+  #       y: 0.5
+  #       z: 0.0
+  #     orientation:
+  #       x: 0.0
+  #       y: 0.0
+  #       z: 0.0
+  #       w: 1.0

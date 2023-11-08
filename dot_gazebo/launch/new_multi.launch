@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+    <arg name="ps" default="ps2" />
+    <arg name="world_file" value="$(find dot_gazebo)/world/ps2/ps2_nosignal.world" 
+        if="$(eval arg('ps') == 'ps2')" />
+    <arg name="map_file" value="$(find dot_map)/config/my_map.yaml"/>
+    <include file="$(find gazebo_ros)/launch/empty_world.launch">
+        <arg name="world_name" value="$(arg world_file)" /> 
+        <arg name="paused" value="false"/>
+        <arg name="use_sim_time" value="true"/>
+        <arg name="gui" value="true"/>
+        <arg name="headless" value="false"/>
+        <arg name="debug" value="false"/>
+        <arg name="verbose" value="false"/>
+    </include>
+    <!-- <param name="robot_description" command="$(find xacro)/xacro 
+                                                        '$(find dot_description)/xacro/main.urdf.xacro'" /> -->
+    <param name="camera_description" command="cat '$(find dot_gazebo)/urdf/cameras.urdf'" />
+<!--    <arg name="x" default="-0.6"/>-->
+<!--    <arg name="y" default="0.23"/>-->
+    <arg name="x" default="-0.9144"/>
+    <arg name="y" default="0"/>
+    <arg name="z" default="0.3"/>
+
+    <arg name="x2" default="-0.9144"/>
+    <arg name="y2" default="-0.1524"/>
+    <arg name="z2" default="0.3"/>
+
+<param name="/bot/robot_description" command="$(find xacro)/xacro 
+                                                        '$(find dot_description)/xacro/main.urdf.xacro'" />
+  <group ns="dot1">
+    
+    <node name="mybot_spawn" pkg="gazebo_ros" type="spawn_model" output="screen"
+          args="-urdf -param /bot/robot_description -model dot1 -x $(arg x) -y $(arg y) -z $(arg z)" />
+
+    <rosparam file="$(find dot_config)/config/control/bot_control.yaml" command="load"/>
+
+    <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false"
+      output="screen" args="joint_state_controller left_joint_position_controller back_joint_position_controller right_joint_position_controller Xaxis_pos_controller Yaxis_pos_controller">
+      <remap from="robot_description" to="/bot/robot_description"/>
+    </node>
+    <node name="dot_omni_control" pkg="dot_control" type="omnidrive" output="screen"/>
+    <!-- <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"
+      respawn="false" output="screen">
+    <remap from="/joint_states" to="/dot1/joint_states" />
+    </node> -->
+  </group>
+
+  <!-- <group ns="dot2">
+    <node name="mybot_spawn" pkg="gazebo_ros" type="spawn_model" output="screen"
+          args="-urdf -param /robot_description -model dot2 -x $(arg x2) -y $(arg y2) -z $(arg z2)" />
+    <rosparam file="$(find dot_config)/config/control/bot_control.yaml" command="load"/>
+
+    <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false"
+      output="screen" args="joint_state_controller left_joint_position_controller back_joint_position_controller right_joint_position_controller Xaxis_pos_controller Yaxis_pos_controller"/>
+    
+    <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"
+      respawn="false" output="screen">
+    <remap from="/joint_states" to="/dot2/joint_states" />
+    </node>
+  </group> -->
+
+    <node name="cameras_spawn" pkg="gazebo_ros" type="spawn_model" output="screen"
+          args="-urdf -param camera_description -model cameras -x 0.0 -y 0.0 -z 0.0" />
+    <arg name="rviz_file"  default="$(find dot_planner)/rviz/dot_planner.rviz" />
+    <node name="rviz" pkg="rviz" type="rviz" args="-d $(arg rviz_file)"/>
+    <node name="map_server" pkg="map_server" type="map_server" args="$(arg map_file)"/>
+     
+</launch>

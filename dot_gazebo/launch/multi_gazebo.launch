@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <launch>
-    <arg name="ps" default="ps1" />
+    <arg name="ps" default="ps2" />
     <arg name="world_file" value="$(find dot_gazebo)/world/ps1/ps1_nosignal.world" 
         if="$(eval arg('ps') == 'ps1')" />
     <arg name="world_file" value="$(find dot_gazebo)/world/ps2/ps2_nosignal.world" 
         if="$(eval arg('ps') == 'ps2')" />
+    <arg name="map_file" value="$(find dot_map)/config/my_map.yaml"/>
         
     <include file="$(find gazebo_ros)/launch/empty_world.launch">
         <arg name="world_name" value="$(arg world_file)" />
@@ -20,26 +21,16 @@
 
     <include file="$(find dot_gazebo)/launch/robot_load_gazebo.launch">
         <arg name="namesp" value="dot1"/>
-        <arg name="x" value="-0.28"/>
-        <arg name="y" value="1.2"/>
-        <arg name="z" value="0.2"/>
+        <arg name="x" value="-0.9144"/>
+        <arg name="y" value="0"/>
+        <arg name="z" value="0.3"/>
     </include> 
-    <include file="$(find dot_gazebo)/launch/robot_load_gazebo.launch">
+    <!-- <include file="$(find dot_gazebo)/launch/robot_load_gazebo.launch">
         <arg name="namesp" value="dot2"/>
-        <arg name="x" value="-0.14"/>
-        <arg name="y" value="1.2"/>
+        <arg name="x" value="-0.9144"/>
+        <arg name="y" value="-0.1524"/>
         <arg name="z" value="0.2"/>
-    </include> 
-    <include file="$(find dot_gazebo)/launch/robot_load_gazebo.launch">
-        <arg name="namesp" value="dot3"/>
-        <arg name="x" value="0.14"/>
-        <arg name="y" value="1.2"/>
-        <arg name="z" value="0.2"/>
-    </include> 
-    <include file="$(find dot_gazebo)/launch/robot_load_gazebo.launch">
-        <arg name="namesp" value="dot4"/>
-        <arg name="x" value="0.28"/>
-        <arg name="y" value="1.2"/>
-        <arg name="z" value="0.2"/>
-    </include> 
+    </include>  -->
+    <arg name="rviz_file"  default="$(find dot_planner)/rviz/dot_planner.rviz" />
+    <node name="rviz" pkg="rviz" type="rviz" args="-d $(arg rviz_file)"/>
 </launch>

@@ -1,4 +1,4 @@
-image: grey.pgm 
+image: IIT.pgm 
 resolution: 0.0017924496 #meters/pixel
 origin: [-1.2192, -1.0683, 0.000000] #x,y,yaw of map
 negate: 0 #white/black free/occupied or reverse

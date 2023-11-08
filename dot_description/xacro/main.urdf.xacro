@@ -506,7 +506,7 @@
         </material>
         <origin rpy="0 0 0" xyz="0 0 0"/>
         <geometry>
-            <mesh filename="package://dot_description/mesh/tag0/tag0.dae" scale="0.45 0.45 1"/>
+            <mesh filename="package://dot_description/mesh/tag0/tag0.dae" scale="1 1 1"/>
         </geometry>
        
     </visual>
@@ -521,7 +521,7 @@
     <minDepth>0.001</minDepth>
 </gazebo>
 
-
+<!-- 
 <link name='platform_tag1'>
     <inertial>
         <origin rpy="0 0 0" xyz="0 0 0"/>
@@ -547,7 +547,7 @@
     <mu2>4.0</mu2>
     <maxVel>0.0</maxVel>
     <minDepth>0.001</minDepth>
-</gazebo>
+</gazebo> -->
 
 <link name='platform'>
     <inertial>
@@ -633,15 +633,15 @@
 </joint>
 
 <joint name='fixed_joint0' type='fixed'>
-    <origin rpy="0.0 0.0 0.0" xyz="-0.023 -0.023 0.008"/>
+    <origin rpy="0.0 0.0 0.0" xyz="0.00 0.00 0.008"/>
     <parent link="platform_mid"/>
     <child link="platform_tag0"/>
 </joint>
-<joint name='fixed_joint1' type='fixed'>
+<!-- <joint name='fixed_joint1' type='fixed'>
     <origin rpy="0.0 0.0 0.0" xyz="0.023 0.023 0.008"/>
     <parent link="platform_mid"/>
     <child link="platform_tag1"/>
-</joint>
+</joint> -->
 
 
 <transmission name="simple_trans1">
